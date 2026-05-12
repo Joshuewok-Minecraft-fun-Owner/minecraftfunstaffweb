@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Fun! Staff Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #4ade80;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #16a34a;
+        }
+
+        .btn-secondary {
+            border: 2px solid #22c55e;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #22c55e;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 80px 10%;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #4ade80;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Minecraft Fun!</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html">Apply</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Minecraft Fun! Staff Portal</h1>
+    <p>
+        The official staff management hub for Minecraft Fun!.
+        Manage projects, collaborate with creators, access private dashboards,
+        and apply to join the team.
+    </p>
+
+    <div class="buttons">
+        <a href="signin.html" class="btn btn-primary">Staff Sign In</a>
+        <a href="signup.html" class="btn btn-secondary">Apply For Staff</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3>Private Dashboards</h3>
+        <p>Each staff member gets their own personal workspace and dashboard.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Creator Collaboration</h3>
+        <p>Coordinate videos, thumbnails, editing, uploads, and scheduling.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Staff Applications</h3>
+        <p>Apply to become part of Minecraft Fun! through the built-in application system.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Admin Controls</h3>
+        <p>Admins can manage users, applications, permissions, and projects.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Minecraft Fun! Staff Portal</p>
+</footer>
+
+</body>
+</html>
