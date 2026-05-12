@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply - Minecraft Fun!</title>
+<script src="js/auth.js"></script>
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    color: #4ade80;
+    margin-bottom: 30px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    background: #334155;
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #4ade80;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Staff Application</h1>
+
+    <input id="username" placeholder="Username">
+
+    <input id="password" type="password" placeholder="Password">
+
+    <select id="role">
+        <option>Editor</option>
+        <option>Builder</option>
+        <option>Thumbnail Artist</option>
+        <option>Moderator</option>
+    </select>
+
+    <textarea id="reason" rows="5" placeholder="Why do you want to join Minecraft Fun!?" ></textarea>
+
+    <button onclick="submitApplication()">Submit Application</button>
+
+    <p>Already staff? <a href="signin.html">Sign In</a></p>
+</div>
+
+<script>
+function submitApplication() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let role = document.getElementById("role").value;
+    let reason = document.getElementById("reason").value;
+
+    if (!username || !password || !reason) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    let result = signup(username, password, role, reason);
+
+    if (result.success) {
+        alert("Application submitted successfully!");
+        window.location.href = "signin.html";
+    } else {
+        alert(result.message);
+    }
+}
+</script>
+
+</body>
+</html>
