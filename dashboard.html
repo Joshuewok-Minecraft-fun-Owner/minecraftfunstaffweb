@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MF! Staff Dashboard</title>
+<script src="js/auth.js"></script>
 <style>
 * {
     margin: 0;
@@ -31,17 +32,24 @@ body {
     margin-bottom: 30px;
 }
 
-.sidebar a {
+.sidebar a, .sidebar button {
     display: block;
+    width: 100%;
     color: white;
     text-decoration: none;
     padding: 14px;
     border-radius: 10px;
     margin-bottom: 10px;
     transition: 0.3s;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-.sidebar a:hover {
+.sidebar a:hover,
+.sidebar button:hover {
     background: rgba(255,255,255,0.08);
 }
 
@@ -55,10 +63,6 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-}
-
-.topbar h1 {
-    font-size: 2rem;
 }
 
 .status {
@@ -93,19 +97,11 @@ body {
     border-radius: 16px;
 }
 
-.projects h2 {
-    margin-bottom: 20px;
-}
-
 .project-item {
     padding: 18px;
     background: rgba(255,255,255,0.04);
     border-radius: 12px;
     margin-bottom: 15px;
-}
-
-.project-item h4 {
-    margin-bottom: 6px;
 }
 
 @media (max-width: 900px) {
@@ -123,69 +119,89 @@ body {
 </head>
 <body>
 
+<script>
+requireLogin();
+const currentUser = getCurrentUser();
+</script>
+
 <div class="sidebar">
     <h2>Minecraft Fun!</h2>
 
     <a href="dashboard.html">Dashboard</a>
-    <a href="staff/joshua.html">Joshua</a>
-    <a href="staff/michael.html">Michael</a>
-    <a href="staff/matthew.html">Matthew</a>
-    <a href="admin.html">Admin Panel</a>
+    <a href="staff.html">My Staff Page</a>
+    <a href="admin.html" id="adminLink">Admin Panel</a>
     <a href="index.html">Homepage</a>
+
+    <button onclick="logout()">Logout</button>
 </div>
 
 <div class="main">
 
     <div class="topbar">
-        <h1>Staff Dashboard</h1>
+        <div>
+            <h1 id="welcomeText">Staff Dashboard</h1>
+            <p id="roleText"></p>
+        </div>
+
         <div class="status">ONLINE</div>
     </div>
 
     <div class="cards">
 
         <div class="card">
-            <h3>Active Projects</h3>
-            <p>4 ongoing Minecraft Fun! projects.</p>
+            <h3>Current User</h3>
+            <p id="currentUserCard"></p>
         </div>
 
         <div class="card">
-            <h3>Pending Applications</h3>
-            <p>2 new staff applications waiting for review.</p>
+            <h3>Role</h3>
+            <p id="roleCard"></p>
         </div>
 
         <div class="card">
-            <h3>Upcoming Uploads</h3>
-            <p>3 videos scheduled this week.</p>
+            <h3>Account Status</h3>
+            <p>Approved Staff Member</p>
         </div>
 
         <div class="card">
-            <h3>Team Members</h3>
-            <p>Joshua, Michael, and Matthew currently active.</p>
+            <h3>Projects</h3>
+            <p>Access your assigned Minecraft Fun! projects.</p>
         </div>
 
     </div>
 
     <div class="projects">
-        <h2>Current Projects</h2>
+        <h2>Your Workspace</h2>
 
         <div class="project-item">
-            <h4>Minecraft Survival Series</h4>
-            <p>Editing and thumbnail creation in progress.</p>
+            <h4>Creator Collaboration</h4>
+            <p>Coordinate uploads, thumbnails, editing, and recordings.</p>
         </div>
 
         <div class="project-item">
-            <h4>Weekly Shorts Batch</h4>
-            <p>Preparing clips and captions for YouTube Shorts.</p>
+            <h4>Staff Profile System</h4>
+            <p>Your personalized dashboard is automatically generated from your account.</p>
         </div>
 
         <div class="project-item">
-            <h4>Staff Portal Development</h4>
-            <p>Building authentication and user dashboard systems.</p>
+            <h4>Portal Security</h4>
+            <p>Protected routes now require approved login access.</p>
         </div>
 
     </div>
 
 </div>
+
+<script>
+document.getElementById("welcomeText").innerText = `Welcome, ${currentUser.username}`;
+document.getElementById("roleText").innerText = currentUser.role;
+document.getElementById("currentUserCard").innerText = currentUser.username;
+document.getElementById("roleCard").innerText = currentUser.role;
+
+if (!currentUser.isAdmin) {
+    document.getElementById("adminLink").style.display = "none";
+}
+</script>
 
 </body>
 </html>
