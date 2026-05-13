@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<script src="js/auth.js"></script>
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    color: #4ade80;
+    margin-bottom: 30px;
+}
+
+.application {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #22c55e;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+a {
+    color: #4ade80;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+</style>
+</head>
+<body>
+
+<script>
+requireLogin();
+requireAdmin();
+</script>
+
+<div class="container">
+
+<a href="dashboard.html">← Back To Dashboard</a>
+
+<h1>Admin Approval Panel</h1>
+
+<div id="applications"></div>
+
+</div>
+
+<script>
+const applications = getPendingApplications();
+const container = document.getElementById("applications");
+
+if (applications.length === 0) {
+    container.innerHTML = "<p>No pending applications.</p>";
+}
+
+applications.forEach(user => {
+    const div = document.createElement("div");
+    div.className = "application";
+
+    div.innerHTML = `
+        <h2>${user.username}</h2>
+        <p><strong>Role:</strong> ${user.role}</p>
+        <p><strong>Reason:</strong> ${user.reason}</p>
+        <button onclick="approve('${user.username}')">Approve User</button>
+    `;
+
+    container.appendChild(div);
+});
+
+function approve(username) {
+    approveUser(username);
+    alert(username + " approved successfully.");
+    location.reload();
+}
+</script>
+
+</body>
+</html>
