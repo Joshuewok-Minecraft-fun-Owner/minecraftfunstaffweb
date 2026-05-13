@@ -65,12 +65,26 @@ p {
 a {
     color: #4ade80;
 }
+
+.info {
+    background: rgba(255,255,255,0.08);
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
 </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Staff Sign In</h1>
+
+    <div class="info">
+        Default Admin Login:<br>
+        Username: <strong>admin</strong><br>
+        Password: <strong>admin123</strong>
+    </div>
 
     <input id="username" placeholder="Username">
 
@@ -89,10 +103,9 @@ function loginUser() {
     let result = login(username, password);
 
     if (result.success) {
-        alert("Welcome, " + result.user.username + "!");
         window.location.href = "dashboard.html";
     } else {
-        alert("Invalid username or password.");
+        alert(result.message);
     }
 }
 </script>
