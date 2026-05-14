@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Staff Page</title>
+<script src="js/auth.js"></script>
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+}
+
+.profile {
+    max-width: 900px;
+    margin: auto;
+    background: #1e293b;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+h1 {
+    color: #4ade80;
+    margin-bottom: 10px;
+}
+
+.role {
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.card h3 {
+    color: #4ade80;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #4ade80;
+}
+</style>
+</head>
+<body>
+
+<script>
+requireLogin();
+const user = getCurrentUser();
+</script>
+
+<div class="profile">
+
+<a href="dashboard.html">← Back To Dashboard</a>
+
+<h1 id="username"></h1>
+<p class="role" id="role"></p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Staff Information</h3>
+<p id="staffInfo"></p>
+</div>
+
+<div class="card">
+<h3>Permissions</h3>
+<p id="permissions"></p>
+</div>
+
+<div class="card">
+<h3>Projects</h3>
+<p>Access Minecraft Fun! collaboration projects and uploads.</p>
+</div>
+
+<div class="card">
+<h3>Status</h3>
+<p>Approved and active staff member.</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("username").innerText = user.username;
+document.getElementById("role").innerText = user.role;
+
+document.getElementById("staffInfo").innerText =
+    `${user.username} is registered as a ${user.role} for Minecraft Fun!.`;
+
+if (user.isAdmin) {
+    document.getElementById("permissions").innerText =
+        "Full administrative access enabled.";
+} else {
+    document.getElementById("permissions").innerText =
+        "Standard staff access enabled.";
+}
+</script>
+
+</body>
+</html>
